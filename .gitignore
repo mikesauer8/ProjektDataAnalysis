@@ -1,0 +1,12 @@
+# virtuelle Umgebung
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Datensatz
+data/Reviews.csv
+
+# VS Code
+.vscode/
