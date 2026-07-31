@@ -10,3 +10,7 @@ data/Reviews.csv
 
 # VS Code
 .vscode/
+
+# Betriebssystem
+.DS_Store
+Thumbs.db

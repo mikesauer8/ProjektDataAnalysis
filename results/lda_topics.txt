@@ -1,0 +1,7 @@
+LDA mit Bag of Words
+
+Thema 1: coffee, like, taste, flavor, good, cup, one, drink, strong, really
+Thema 2: like, good, taste, flavor, great, chocolate, chips, love, sugar, sweet
+Thema 3: tea, taste, like, flavor, green, drink, teas, one, good, black
+Thema 4: use, great, product, water, make, easy, price, using, time, milk
+Thema 5: food, product, amazon, dog, one, like, would, get, good, price

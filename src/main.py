@@ -5,6 +5,8 @@ import pandas as pd
 from preprocessing import preprocess_dataframe
 from vectorization import create_bow_matrix, create_tfidf_matrix, get_top_words
 from topic_modeling import print_topics, train_lda, train_nmf
+from evaluation import evaluate_topic_model, print_evaluation, save_evaluation, save_topics
+from visualization import plot_model_evaluation, plot_top_words
 
 
 SAMPLE_SIZE = 5000
@@ -93,6 +95,45 @@ def main() -> None:
 
     print_topics(lda_result)
     print_topics(nmf_result)
+
+    lda_evaluation = evaluate_topic_model(lda_result)
+    nmf_evaluation = evaluate_topic_model(nmf_result)
+
+    print_evaluation(lda_evaluation)
+    print_evaluation(nmf_evaluation)
+
+    results_dir = project_root / "results"
+    results_dir.mkdir(exist_ok=True)
+
+    save_topics(
+        lda_result,
+        results_dir / "lda_topics.txt",
+    )
+
+    save_topics(
+        nmf_result,
+        results_dir / "nmf_topics.txt",
+    )
+
+    save_evaluation(
+        lda_evaluation,
+        nmf_evaluation,
+        results_dir / "evaluation.txt",
+    )
+
+    figures_dir = project_root / "figures"
+    figures_dir.mkdir(exist_ok=True)
+
+    plot_top_words(
+        bow_result,
+        figures_dir / "top_words_bow.png",
+    )
+
+    plot_model_evaluation(
+        lda_evaluation,
+        nmf_evaluation,
+        figures_dir / "model_evaluation.png",
+    )
 
 if __name__ == "__main__":
     main()

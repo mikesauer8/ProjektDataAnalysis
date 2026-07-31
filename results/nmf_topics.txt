@@ -1,0 +1,7 @@
+NMF mit TF-IDF
+
+Thema 1: like, taste, flavor, good, chocolate, one, love, really, sweet, sugar
+Thema 2: coffee, cup, strong, roast, cups, bold, like, good, flavor, bitter
+Thema 3: tea, green, teas, drink, bags, cup, iced, black, drinking, stash
+Thema 4: food, dog, treats, dogs, cat, loves, eat, cats, treat, one
+Thema 5: product, price, great, amazon, order, buy, find, store, shipping, good

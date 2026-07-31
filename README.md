@@ -17,6 +17,7 @@ Der Datensatz besteht aus Produktbewertungen in englischer Sprache und wird zun�
 - NumPy
 - NLTK
 - scikit-learn
+- matplotlib
 
 ---
 
@@ -58,6 +59,17 @@ Zur Identifikation häufig auftretender Themen werden zwei Verfahren eingesetzt.
 
 ---
 
+### Evaluation
+
+Die erzeugten Themenmodelle werden anhand zweier Kennzahlen miteinander verglichen.
+
+- Topic Diversity
+- Durchschnittliche Topic-Überschneidung
+
+Zusätzlich erfolgt eine qualitative Betrachtung der extrahierten Themen.
+
+---
+
 ## Projektstruktur
 
 ```text
@@ -66,12 +78,17 @@ ProjektDataAnalysis/
 ├── data/
 │   └── Reviews.csv
 │
+├── figures/
+│
+├── results/
+│
 ├── src/
 │   ├── main.py
+│   ├── evaluation.py
 │   ├── preprocessing.py
-│   ├── vectorization.py
 │   ├── topic_modeling.py
-│   └── evaluation.py
+│   ├── vectorization.py
+│   └── visualization.py
 │
 ├── .gitignore
 ├── README.md
@@ -128,6 +145,21 @@ pip install -r requirements.txt
 python .\src\main.py
 ```
 
+Nach der Ausführung werden automatisch folgende Dateien erzeugt:
+
+```text
+ProjektDataAnalysis/
+│
+├── results/
+│   ├── lda_topics.txt
+│   ├── nmf_topics.txt
+│   └── evaluation.txt
+│
+└── figures/
+    ├── top_words_bow.png
+    └── model_evaluation.png
+```
+
 ---
 
 ## Datensatz
@@ -164,8 +196,10 @@ abzulegen.
 - ✔ TF-IDF implementiert
 - ✔ LDA implementiert
 - ✔ NMF implementiert
-- ⏳ Evaluation der Ergebnisse
-- ⏳ Dokumentation
+- ✔ Evaluation der Topic-Modelle
+- ✔ Automatische Speicherung der Ergebnisse
+- ✔ Erstellung von Visualisierungen
+- ✔ Projektdokumentation
 
 ---
 

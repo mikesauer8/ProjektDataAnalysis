@@ -1,0 +1,7 @@
+LDA mit Bag of Words
+Topic Diversity: 0.680
+Durchschnittliche Topic-Überschneidung: 0.156
+
+NMF mit TF-IDF
+Topic Diversity: 0.880
+Durchschnittliche Topic-Überschneidung: 0.039
