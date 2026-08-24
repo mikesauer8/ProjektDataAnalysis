@@ -4,9 +4,11 @@ Python-basierte Analyse von Amazon Fine Food Reviews mittels Natural Language Pr
 
 ## Projektbeschreibung
 
-Dieses Projekt wurde im Rahmen des IU-Moduls **Data Analysis** entwickelt. Ziel ist die Analyse einer Sammlung von Amazon Fine Food Reviews, um häufig diskutierte Themen automatisch zu identifizieren. Hierzu werden verschiedene Verfahren der Textvorverarbeitung, Vektorisierung und Themenmodellierung eingesetzt.
+Dieses Projekt wurde im Rahmen des IU-Moduls **Data Analysis** entwickelt. Ziel ist die Analyse einer Sammlung von Amazon Fine Food Reviews, um häufig diskutierte Themen automatisch zu identifizieren.
 
-Der Datensatz besteht aus Produktbewertungen in englischer Sprache und wird zunächst bereinigt und anschließend mit Methoden des Natural Language Processing (NLP) analysiert. Für die Themenmodellierung werden Latent Dirichlet Allocation (LDA) und Non-negative Matrix Factorization (NMF) miteinander verglichen.
+Der Datensatz besteht aus Produktbewertungen in englischer Sprache. Die Texte werden zunächst vorverarbeitet und anschließend mithilfe verschiedener Verfahren zur Vektorisierung und Themenmodellierung analysiert.
+
+Zur Bestimmung einer geeigneten Themenanzahl wird zusätzlich der Coherence Score verwendet. Die erzeugten Themenmodelle werden anschließend anhand weiterer Kennzahlen miteinander verglichen.
 
 ---
 
@@ -17,7 +19,7 @@ Der Datensatz besteht aus Produktbewertungen in englischer Sprache und wird zun�
 - NumPy
 - NLTK
 - scikit-learn
-- gensim
+- Gensim
 - matplotlib
 
 ---
@@ -28,12 +30,12 @@ Der Datensatz besteht aus Produktbewertungen in englischer Sprache und wird zun�
 
 Vor der eigentlichen Analyse werden die Texte bereinigt.
 
-Dabei werden unter anderem folgende Schritte durchgeführt:
+Dabei werden unter anderem folgende Verarbeitungsschritte durchgeführt:
 
 - Umwandlung in Kleinbuchstaben
 - Entfernung von HTML-Tags
 - Entfernung von Zahlen
-- Entfernung von Sonderzeichen
+- Entfernung von Sonderzeichen und Satzzeichen
 - Entfernung englischer Stopwörter
 
 ---
@@ -47,42 +49,31 @@ Verwendete Verfahren:
 - Bag of Words (BoW)
 - Term Frequency–Inverse Document Frequency (TF-IDF)
 
+Für die anschließende Themenmodellierung wird die Bag-of-Words-Darstellung für LDA und die TF-IDF-Darstellung für NMF verwendet.
+
 ---
 
 ### Themenmodellierung
 
-Zur Identifikation häufig auftretender Themen werden zwei Verfahren eingesetzt:
+Zur automatischen Identifikation häufig diskutierter Themen werden zwei Verfahren eingesetzt:
 
-- Latent Dirichlet Allocation (LDA) auf Grundlage der Bag-of-Words-Darstellung
-- Non-negative Matrix Factorization (NMF) auf Grundlage der TF-IDF-Darstellung
+- Latent Dirichlet Allocation (LDA)
+- Non-negative Matrix Factorization (NMF)
 
-Die Anzahl der Topics wird nicht ausschließlich manuell festgelegt. Für Themenanzahlen von 2 bis 10 wird für beide Verfahren der Coherence Score (C_v) berechnet. Anschließend wird für jedes Modell die Themenanzahl mit dem höchsten Coherence Score ausgewählt.
-
-Für die verwendete reproduzierbare Stichprobe von 5.000 Bewertungen ergaben sich:
-
-- LDA: 10 Topics, C_v = 0,504
-- NMF: 9 Topics, C_v = 0,569
+Die Themen werden anhand ihrer jeweils wichtigsten Begriffe beschrieben.
 
 ---
 
 ### Evaluation
 
-Die erzeugten Themenmodelle werden anhand mehrerer Kennzahlen miteinander verglichen:
+Zur Bestimmung einer geeigneten Themenanzahl wird für unterschiedliche Anzahlen von Topics der **Coherence Score (C_v)** berechnet.
 
-- Coherence Score (C_v)
+Die resultierenden Themenmodelle werden zusätzlich anhand folgender Kennzahlen miteinander verglichen:
+
 - Topic Diversity
-- Durchschnittliche Topic-Überschneidung
+- durchschnittliche Topic-Überschneidung
 
-Für die finalen Modelle ergaben sich folgende Werte:
-
-| Modell | Topics | Coherence Score (C_v) | Topic Diversity | Topic-Überschneidung |
-|---|---:|---:|---:|---:|
-| LDA | 10 | 0,504 | 0,740 | 0,070 |
-| NMF | 9 | 0,569 | 0,933 | 0,009 |
-
-NMF erzielt damit sowohl einen höheren maximalen Coherence Score als auch eine höhere Topic Diversity und eine geringere Überschneidung zwischen den identifizierten Themen.
-
-Zusätzlich werden die extrahierten Themen und ihre wichtigsten Keywords ausgegeben und für die weitere Auswertung gespeichert.
+Ergänzend erfolgt eine qualitative Betrachtung der extrahierten Themen anhand ihrer wichtigsten Keywords.
 
 ---
 
@@ -107,8 +98,8 @@ ProjektDataAnalysis/
 │   └── topic_overview.txt
 │
 ├── src/
-│   ├── main.py
 │   ├── evaluation.py
+│   ├── main.py
 │   ├── preprocessing.py
 │   ├── topic_modeling.py
 │   ├── vectorization.py
@@ -123,25 +114,25 @@ ProjektDataAnalysis/
 
 ## Installation
 
-Repository klonen:
+### Repository klonen
 
 ```bash
 git clone https://github.com/mikesauer8/ProjektDataAnalysis.git
 ```
 
-In das Projektverzeichnis wechseln:
+### In das Projektverzeichnis wechseln
 
 ```bash
 cd ProjektDataAnalysis
 ```
 
-Virtuelle Umgebung erstellen:
+### Virtuelle Umgebung erstellen
 
 ```bash
 python -m venv .venv
 ```
 
-Virtuelle Umgebung aktivieren:
+### Virtuelle Umgebung aktivieren
 
 Windows:
 
@@ -155,7 +146,7 @@ Linux/macOS:
 source .venv/bin/activate
 ```
 
-Abhängigkeiten installieren:
+### Abhängigkeiten installieren
 
 ```bash
 pip install -r requirements.txt
@@ -165,21 +156,29 @@ pip install -r requirements.txt
 
 ## Projekt ausführen
 
-Unter Windows:
+Das vollständige Analyseprogramm wird über `main.py` gestartet.
+
+Windows:
 
 ```bash
 python .\src\main.py
 ```
 
-Alternativ unter Linux/macOS:
+Linux/macOS:
 
 ```bash
 python ./src/main.py
 ```
 
-Während der Ausführung werden die Texte vorverarbeitet, BoW- und TF-IDF-Darstellungen erzeugt, die Coherence Scores für unterschiedliche Themenanzahlen berechnet und anschließend die finalen LDA- und NMF-Modelle trainiert und evaluiert.
+Während der Ausführung werden die Daten geladen und vorverarbeitet, die Vektordarstellungen erzeugt, die Themenmodelle trainiert und die Evaluationskennzahlen berechnet.
 
-Nach der Ausführung werden unter anderem folgende Dateien automatisch erzeugt:
+---
+
+## Erzeugte Dateien
+
+Nach der Ausführung werden die Ergebnisse automatisch in den Verzeichnissen `results/` und `figures/` gespeichert.
+
+### Ergebnisdateien
 
 ```text
 results/
@@ -188,12 +187,20 @@ results/
 ├── lda_topics.txt
 ├── nmf_topics.txt
 └── topic_overview.txt
+```
 
+Die Dateien enthalten die berechneten Coherence Scores, die Evaluationskennzahlen, die extrahierten Topics sowie eine Übersicht der identifizierten Themen.
+
+### Visualisierungen
+
+```text
 figures/
 ├── coherence_scores.png
 ├── model_evaluation.png
 └── top_words_bow.png
 ```
+
+Die Abbildungen visualisieren die Coherence Scores in Abhängigkeit von der Themenanzahl, den Vergleich der Topic-Modelle sowie die häufigsten Wörter der Bag-of-Words-Darstellung.
 
 ---
 
@@ -207,39 +214,36 @@ https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews
 
 Aus Lizenz- und Größengründen befindet sich der Datensatz nicht im Repository und muss separat heruntergeladen werden.
 
-Nach dem Download ist die Datei
+Nach dem Download muss die Datei
 
 ```text
 Reviews.csv
 ```
 
-im Ordner
+im Verzeichnis
 
 ```text
 data/
 ```
 
-abzulegen.
+abgelegt werden.
 
-Für die Analyse wird eine reproduzierbare Stichprobe von 5.000 Bewertungen mit einem festen `random_state` verwendet.
+Für die Analyse wird aus dem Datensatz eine reproduzierbare Stichprobe von **5.000 Bewertungen** verwendet.
 
 ---
 
-## Aktueller Projektstand
+## Projektstand
 
 - ✔ Datensatz eingebunden
-- ✔ Reproduzierbare Stichprobe implementiert
 - ✔ Textvorverarbeitung implementiert
 - ✔ Bag of Words implementiert
 - ✔ TF-IDF implementiert
 - ✔ LDA implementiert
 - ✔ NMF implementiert
-- ✔ Coherence Score (C_v) implementiert
-- ✔ Vergleich verschiedener Themenanzahlen implementiert
-- ✔ Automatische Auswahl der Themenanzahl
-- ✔ Topic Diversity berechnet
-- ✔ Topic-Überschneidung berechnet
-- ✔ Themenübersicht mit Keywords erzeugt
+- ✔ Coherence Score implementiert
+- ✔ Automatische Bestimmung einer geeigneten Themenanzahl
+- ✔ Evaluation der Topic-Modelle
+- ✔ Übersicht der identifizierten Themen und Keywords
 - ✔ Automatische Speicherung der Ergebnisse
 - ✔ Erstellung von Visualisierungen
 - ✔ Projektdokumentation
@@ -248,8 +252,6 @@ Für die Analyse wird eine reproduzierbare Stichprobe von 5.000 Bewertungen mit 
 
 ## Autor
 
-Mike Sauer
-
+Mike Sauer  
 IU Internationale Hochschule  
 Modul: Data Analysis
-
