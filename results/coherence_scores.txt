@@ -1,0 +1,15 @@
+Coherence Score nach Themenanzahl
+
+2 Topics | LDA: 0.439 | NMF: 0.494
+3 Topics | LDA: 0.452 | NMF: 0.524
+4 Topics | LDA: 0.461 | NMF: 0.551
+5 Topics | LDA: 0.485 | NMF: 0.563
+6 Topics | LDA: 0.484 | NMF: 0.547
+7 Topics | LDA: 0.467 | NMF: 0.534
+8 Topics | LDA: 0.469 | NMF: 0.540
+9 Topics | LDA: 0.493 | NMF: 0.569
+10 Topics | LDA: 0.504 | NMF: 0.549
+
+Optimale Themenanzahl:
+LDA: 10 Topics (Coherence: 0.504)
+NMF: 9 Topics (Coherence: 0.569)

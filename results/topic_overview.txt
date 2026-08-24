@@ -1,0 +1,26 @@
+Übersicht der identifizierten Themen
+
+LDA mit Bag of Words
+
+Thema 1: like, taste, good, one, really
+Thema 2: salt, sauce, flavor, hot, like
+Thema 3: tea, green, flavor, taste, drink
+Thema 4: coffee, cup, like, cups, good
+Thema 5: amazon, product, price, order, store
+Thema 6: chocolate, like, good, taste, chips
+Thema 7: great, love, flavor, recommend, good
+Thema 8: use, water, well, easy, also
+Thema 9: sugar, milk, ingredients, fat, cereal
+Thema 10: food, dog, treats, dogs, cat
+
+NMF mit TF-IDF
+
+Thema 1: like, taste, flavor, good, really
+Thema 2: coffee, cup, strong, roast, cups
+Thema 3: tea, green, teas, bags, drink
+Thema 4: food, cat, cats, eat, dry
+Thema 5: amazon, price, find, store, order
+Thema 6: product, good, would, recommend, arrived
+Thema 7: great, love, snack, tastes, easy
+Thema 8: dog, treats, dogs, treat, loves
+Thema 9: chocolate, bar, cookies, bars, hot

@@ -71,3 +71,54 @@ def plot_model_evaluation(
     plt.tight_layout()
     plt.savefig(output_path, dpi=300)
     plt.close()
+
+def plot_coherence_scores(
+    topic_count_results,
+    output_path: Path,
+) -> None:
+    """Visualisiert die Coherence Scores für verschiedene Themenanzahlen."""
+
+    topic_counts = [
+        result.n_topics
+        for result in topic_count_results
+    ]
+
+    lda_scores = [
+        result.lda_coherence
+        for result in topic_count_results
+    ]
+
+    nmf_scores = [
+        result.nmf_coherence
+        for result in topic_count_results
+    ]
+
+    plt.figure(figsize=(8, 5))
+
+    plt.plot(
+        topic_counts,
+        lda_scores,
+        marker="o",
+        label="LDA",
+    )
+
+    plt.plot(
+        topic_counts,
+        nmf_scores,
+        marker="o",
+        label="NMF",
+    )
+
+    plt.xlabel("Anzahl der Topics")
+    plt.ylabel(r"Coherence Score ($C_v$)")
+    plt.title("Coherence Score in Abhängigkeit von der Themenanzahl")
+    plt.xticks(topic_counts)
+    plt.legend()
+    plt.tight_layout()
+
+    plt.savefig(
+        output_path,
+        dpi=300,
+    )
+
+    plt.close()
